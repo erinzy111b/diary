@@ -24,8 +24,8 @@ return new class extends Migration
             $table->string('where', 255)->nullable();
             $table->string('why', 255)->nullable();
             $table->string('how', 255)->nullable();
-            $table->string('remark')->nullable();
-            $table->string('img')->nullable();
+            $table->string('remark', 255)->nullable();
+            $table->string('img', 255)->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });
