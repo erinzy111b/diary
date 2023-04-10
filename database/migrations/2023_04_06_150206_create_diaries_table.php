@@ -13,7 +13,7 @@ return new class extends Migration
      */
     public function up()
     {
-        Schema::create('states', function (Blueprint $table) {
+        Schema::create('diaries', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
             $table->date('date');
@@ -37,7 +37,7 @@ return new class extends Migration
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('feeling_id')->references('id')->on('feelings')->onDelete('cascade');
-            $table->foreign('weather_id')->references('id')->on('weathers')->onDelete('cascade');
+            $table->foreign('weather_id')->references('id')->on('weather')->onDelete('cascade');
             $table->foreign('symptom_id')->references('id')->on('symptoms')->onDelete('cascade');
         });
     }
@@ -49,7 +49,7 @@ return new class extends Migration
      */
     public function down()
     {
-        Schema::table('states', function
+        Schema::table('diaries', function
             (Blueprint $table) {
                 $table->dropForeign(array('user_id'));
                 $table->dropForeign(array('feeling_id'));
@@ -57,6 +57,6 @@ return new class extends Migration
                 $table->dropForeign(array('symptom_id'));
             });
 
-        Schema::dropIfExists('states');
+        Schema::dropIfExists('diaries');
     }
 };
