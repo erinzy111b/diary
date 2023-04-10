@@ -47,7 +47,7 @@ class FeelingSeeder extends Seeder
             [
                 'id' => 5,
                 'name' => 'happy',
-                //快樂
+                //開心
             ],
         );
         Feeling::create(

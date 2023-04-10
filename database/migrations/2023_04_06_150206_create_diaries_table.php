@@ -18,6 +18,7 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->date('date');
             $table->unsignedBigInteger('feeling_id')->nullable();
+            $table->string('feelings')->nullable();
             $table->unsignedTinyInteger('feeling_point_average')->nullable(); //當日心情平均數
             $table->unsignedTinyInteger('feeling_point_max')->nullable(); //當日心情高點
             $table->unsignedTinyInteger('feeling_point_min')->nullable(); //當日心情低點
@@ -25,8 +26,8 @@ return new class extends Migration
             $table->float('temperature', 6, 1)->nullable(); //攝氏，總長6個字元，至小數點1位
             $table->string('feellike', 10)->nullable(); //體感，冷涼普悶熱
             $table->string('exercise', 10)->nullable(); //運動量，多中少無
-            $table->string('eat', 10)->nullable(); //進食量，多中少無
-            $table->string('drink', 10)->nullable(); //飲水量，多中少無
+            $table->string('eat', 10)->nullable(); //進食量，多中少
+            $table->string('drink', 10)->nullable(); //飲水量，多中少
             $table->unsignedfloat('weight', 3, 2)->nullable(); //公斤，總長3個字元，至小數點2位
             $table->string('pressure', 50)->nullable(); //壓力源
             $table->unsignedBigInteger('symptom_id')->nullable(); //不適症狀
@@ -36,9 +37,6 @@ return new class extends Migration
             $table->boolean('autolesionC')->default(false); //自傷行為
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
-            $table->foreign('feeling_id')->references('id')->on('feelings')->onDelete('cascade');
-            $table->foreign('weather_id')->references('id')->on('weather')->onDelete('cascade');
-            $table->foreign('symptom_id')->references('id')->on('symptoms')->onDelete('cascade');
         });
     }
 
@@ -52,9 +50,6 @@ return new class extends Migration
         Schema::table('diaries', function
             (Blueprint $table) {
                 $table->dropForeign(array('user_id'));
-                $table->dropForeign(array('feeling_id'));
-                $table->dropForeign(array('weather_id'));
-                $table->dropForeign(array('symptom_id'));
             });
 
         Schema::dropIfExists('diaries');

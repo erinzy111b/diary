@@ -8,4 +8,15 @@ use Illuminate\Database\Eloquent\Model;
 class Record extends Model
 {
     use HasFactory;
+
+    public function user()
+    {
+        return $this->belongsTo(User::class);
+        return $this->hasOne(User::class);
+    }
+
+    public function feeling()
+    {
+        return $this->hasOne(Feeling::class);
+    }
 }
