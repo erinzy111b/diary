@@ -22,15 +22,15 @@ return new class extends Migration
             $table->unsignedTinyInteger('feeling_point_average')->nullable(); //當日心情平均數
             $table->unsignedTinyInteger('feeling_point_max')->nullable(); //當日心情高點
             $table->unsignedTinyInteger('feeling_point_min')->nullable(); //當日心情低點
-            $table->unsignedBigInteger('weather_id')->nullable();
-            $table->float('temperature', 6, 1)->nullable(); //攝氏，總長6個字元，至小數點1位
+            $table->string('weather_id')->nullable();
+            $table->float('temperature', 10, 1)->nullable(); //攝氏，總長6個字元，至小數點1位
             $table->string('feellike', 10)->nullable(); //體感，冷涼普悶熱
             $table->string('exercise', 10)->nullable(); //運動量，多中少無
             $table->string('eat', 10)->nullable(); //進食量，多中少
             $table->string('drink', 10)->nullable(); //飲水量，多中少
-            $table->unsignedfloat('weight', 3, 2)->nullable(); //公斤，總長3個字元，至小數點2位
+            $table->unsignedfloat('weight', 10, 2)->nullable(); //公斤，總長3個字元，至小數點2位
             $table->string('pressure', 50)->nullable(); //壓力源
-            $table->unsignedBigInteger('symptom_id')->nullable(); //不適症狀
+            $table->string('symptom_id')->nullable(); //不適症狀
             $table->boolean('period')->nullable();
             $table->boolean('autolesionA')->default(false); //自傷念頭
             $table->boolean('autolesionB')->default(false); //自傷計畫

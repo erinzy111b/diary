@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Diary;
 use Illuminate\Http\Request;
 
 class DiaryController extends Controller
@@ -34,7 +35,27 @@ class DiaryController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // 只取得需要填入資料庫的欄位
+        $data = $request->only(['user_id', 'name', 'date', 'feelings', 'feeling_point_average', 'feeling_point_max', 'feeling_point_min', 'weather_id', 'temperature', 'feellike', 'exercise', 'eat', 'drink', 'weight', 'pressure', 'symptom_id', 'period', 'autolesionA', 'autolesionB', 'autolesionC']);
+
+        // 將 feelings 的 checkbox 欄位轉換為字串
+        $feelings = implode(',', $request->input('feelings', []));
+        $data['feelings'] = $feelings;
+
+        // 將 weather_id 的 checkbox 欄位轉換為字串
+        $weather_id = implode(',', $request->input('weather_id', []));
+        $data['weather_id'] = $weather_id;
+
+        // 將 symptom_id 的 checkbox 欄位轉換為字串
+        $symptom_id = implode(',', $request->input('symptom_id', []));
+        $data['symptom_id'] = $symptom_id;
+
+        // 執行資料庫存儲
+        Diary::create($data);
+
+        // dd($request->all());
+        // Diary::create($request->all());
+        // 取出所有欄位資料後新增
     }
 
     /**

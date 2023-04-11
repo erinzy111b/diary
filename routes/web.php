@@ -28,16 +28,18 @@ Route::group(['prefix' => 'admin'], function () {
 Route::namespace ('App\Http\Controllers')->prefix('diary')->group(function () {
     Route::get('/', 'DiaryController@index');
     Route::get('create', 'DiaryController@create');
-    Route::post('/', 'DiaryController@store');
+    Route::post('/', ['as' => 'diary.store', 'uses' => 'DiaryController@store']);
     Route::get('{user_id}/{date}', 'DiaryController@show');
     Route::get('{user_id}/{date}/edit', 'DiaryController@edit');
     Route::put('{user_id}/{date}', 'DiaryController@update');
     Route::delete('{user_id}/{date}', 'DiaryController@destroy');
+    Route::get('redirect', function () {
+        return redirect('index');});
 });
 Route::middleware([
     'auth:sanctum',
     config('jetstream.auth_session'),
-    'verified'
+    'verified',
 ])->group(function () {
     Route::get('/dashboard', function () {
         return view('dashboard');

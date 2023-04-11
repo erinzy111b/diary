@@ -7,41 +7,42 @@
   <title>Document</title>
 </head>
 <body>
-        {!! Form::open(['url'=>'', 'method'=>'POST']) !!}
-        {{-- {!! Form::hidden('user_id', Auth::user()->id) !!} --}}
+        {!! Form::open(['route'=>'diary.store', 'method'=>'POST']) !!}
+        {!! Form::hidden('user_id', Auth::user()->id) !!}
+        {{-- {!! Form::text('user_id') !!} --}}
 
         {!! Form::label('date', '日期', []) !!}
-        {!! Form::date('name', \Carbon\Carbon::now()) !!}<br><br>
+        {!! Form::date('date', \Carbon\Carbon::now()) !!}<br><br>
 
         情緒：<br>
         {!! Form::checkbox('feelings[]', 5, false) !!}
         {!! Form::label('feelings[]', '開心', []) !!}
-        {!! Form::checkbox('colors[]', 6, false) !!}
-        {!! Form::label('colors[]', '難過', []) !!}
-        {!! Form::checkbox('colors[]', 7, false) !!}
-        {!! Form::label('colors[]', '放鬆', []) !!}
-        {!! Form::checkbox('colors[]', 8, false) !!}
-        {!! Form::label('colors[]', '擔憂', []) !!}<br><br>
+        {!! Form::checkbox('feelings[]', 6, false) !!}
+        {!! Form::label('feelings[]', '難過', []) !!}
+        {!! Form::checkbox('feelings[]', 7, false) !!}
+        {!! Form::label('feelings[]', '放鬆', []) !!}
+        {!! Form::checkbox('feelings[]', 8, false) !!}
+        {!! Form::label('feelings[]', '擔憂', []) !!}<br><br>
 
         當日心情指數：<br>
-        {{-- 擇一填寫，若全填就以平均為主，最高最低在收入資料庫時自動計算並填入平均，若高低只填一項，另一項自動填入一樣的數值 --}}
-        {{-- bonus 比昨天高 比昨天低 和昨天一樣 --}}
+        {{-- 擇一填寫，若全填就以平均為主，最高最低在收入資料庫時自動計算並填入平均，若高低只填一項，另一項自動填入一樣的數值--}}
+        {{-- bonus 比昨天高 比昨天低 和昨天一樣--}}
         {!! Form::label('feeling_point_average', '平均', []) !!}
-        {!! Form::selectRangeWithInterval('number', 0, 100, 5, 80, ['class' => 'form-control']) !!}<br>
+        {!! Form::selectRangeWithInterval('feeling_point_average', 0, 100, 5, 80, ['class' => 'form-control']) !!}<br>
         {!! Form::label('feeling_point_max', '最高', []) !!}
         {!! Form::text('feeling_point_max', null) !!}
         {!! Form::label('feeling_point_min', '最低', []) !!}
         {!! Form::text('feeling_point_min', null) !!}<br><br>
 
         天氣：<br>
-        {!! Form::checkbox('weather_id', 1, false) !!}
-        {!! Form::label('weather_id', '晴天', []) !!}
-        {!! Form::checkbox('weather_id', 2, false) !!}
-        {!! Form::label('weather_id', '多雲', []) !!}
-        {!! Form::checkbox('weather_id', 3, false) !!}
-        {!! Form::label('weather_id', '陰天', []) !!}
-        {!! Form::checkbox('weather_id', 4, false) !!}
-        {!! Form::label('weather_id', '下雨', []) !!}<br><br>
+        {!! Form::checkbox('weather_id[]', 1, false) !!}
+        {!! Form::label('weather_id[]', '晴天', []) !!}
+        {!! Form::checkbox('weather_id[]', 2, false) !!}
+        {!! Form::label('weather_id[]', '多雲', []) !!}
+        {!! Form::checkbox('weather_id[]', 3, false) !!}
+        {!! Form::label('weather_id[]', '陰天', []) !!}
+        {!! Form::checkbox('weather_id[]', 4, false) !!}
+        {!! Form::label('weather_id[]', '下雨', []) !!}<br><br>
 
         {!! Form::label('temperature', '溫度', []) !!}
         {!! Form::text('temperature', null) !!}<br><br>
@@ -59,25 +60,25 @@
         {!! Form::select('drink', ['1'=>'過少','2'=>'偏少','3'=>'適中','4'=>'偏多','5'=>'過多'],'3') !!}<br><br>
 
         {!! Form::label('weight', '體重', []) !!}
-        {{-- bonus 與昨天一樣 --}}
+        {{-- bonus 與昨天一樣--}}
         {!! Form::text('weight', null) !!}<br><br>
 
         {!! Form::label('pressure', '壓力源', []) !!}
         {!! Form::text('pressure', null) !!}<br><br>
 
         不適症狀：<br>
-        {!! Form::checkbox('feelings[]', 1, false) !!}
-        {!! Form::label('feelings[]', '咳嗽', []) !!}
-        {!! Form::checkbox('feelings[]', 2, false) !!}
-        {!! Form::label('feelings[]', '喉嚨痛', []) !!}
-        {!! Form::checkbox('feelings[]', 3, false) !!}
-        {!! Form::label('feelings[]', '肚子痛', []) !!}
-        {!! Form::checkbox('feelings[]', 4, false) !!}
-        {!! Form::label('feelings[]', '發燒', []) !!}
-        {!! Form::checkbox('feelings[]', 5, false) !!}
-        {!! Form::label('feelings[]', '頭痛', []) !!}
-        {!! Form::checkbox('feelings[]', 6, false) !!}
-        {!! Form::label('feelings[]', '嘔吐', []) !!}<br><br>
+        {!! Form::checkbox('symptom_id[]', 1, false) !!}
+        {!! Form::label('symptom_id[]', '咳嗽', []) !!}
+        {!! Form::checkbox('symptom_id[]', 2, false) !!}
+        {!! Form::label('symptom_id[]', '喉嚨痛', []) !!}
+        {!! Form::checkbox('symptom_id[]', 3, false) !!}
+        {!! Form::label('symptom_id[]', '肚子痛', []) !!}
+        {!! Form::checkbox('symptom_id[]', 4, false) !!}
+        {!! Form::label('symptom_id[]', '發燒', []) !!}
+        {!! Form::checkbox('symptom_id[]', 5, false) !!}
+        {!! Form::label('symptom_id[]', '頭痛', []) !!}
+        {!! Form::checkbox('symptom_id[]', 6, false) !!}
+        {!! Form::label('symptom_id[]', '嘔吐', []) !!}<br><br>
 
         生理期：
         {!! Form::label('period', '是', []) !!}
