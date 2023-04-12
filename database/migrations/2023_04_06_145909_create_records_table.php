@@ -21,6 +21,7 @@ return new class extends Migration
             $table->boolean('positive')->nullable();
             $table->boolean('negative')->nullable();
             $table->unsignedBigInteger('feeling_id')->nullable();
+            $table->boolean('status')->nullable();
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->foreign('feeling_id')->references('id')->on('feelings')->onDelete('cascade');
