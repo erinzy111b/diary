@@ -14,11 +14,12 @@ return new class extends Migration
     public function up()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->string('account')->nullable();
-            $table->string('ip')->nullable();
-            $table->timestamp('last_login_at')->nullable();
+            $table->date('birthday')->nullable();
+            $table->string('sexual', 10)->nullable();
             $table->boolean('private_mode')->defalt(false);
             $table->boolean('period_mode')->defalt(false);
+            $table->timestamp('last_login_at')->nullable();
+            $table->string('last_login_ip')->nullable();
             $table->timestamp('deleted_at')->nullable();
         });
     }
@@ -31,7 +32,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->dropColumn(['account', 'ip', 'last_login_at', 'private_mode', 'private_mode', 'period_mode', 'deleted_at']);
+            $table->dropColumn(['birthday', 'sexual', 'last_login_ip', 'last_login_at', 'private_mode', 'period_mode', 'deleted_at']);
         });
     }
 };
