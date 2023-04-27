@@ -14,7 +14,7 @@ class DiaryController extends Controller
      */
     public function index()
     {
-        return view('diary.index');
+        return view('project.diary.index');
     }
 
     /**
@@ -24,7 +24,7 @@ class DiaryController extends Controller
      */
     public function create()
     {
-        return view('diary.create');
+        return view('project.diary.create');
     }
 
     /**
@@ -66,7 +66,7 @@ class DiaryController extends Controller
      */
     public function show($user_id, $date)
     {
-        return view('diary.show');
+        return view('project.diary.show');
     }
 
     /**
@@ -77,7 +77,7 @@ class DiaryController extends Controller
      */
     public function edit($user_id, $date)
     {
-        return view('diary.edit');
+        return view('project.diary.edit');
     }
 
     /**

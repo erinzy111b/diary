@@ -21,6 +21,20 @@ Route::get('test', function () {
     return view('test');
 });
 
+Route::namespace ('App\Http\Controllers')->prefix('test')->group(function () {
+    Route::get('/', 'TestController@index');
+    Route::get('create', 'TestController@create');
+    Route::post('/', ['as' => 'test.store', 'uses' => 'TestController@store']);
+    Route::get('{user_id}/{date}', 'TestController@show');
+    Route::get('{user_id}/{date}/edit', 'TestController@edit');
+    Route::put('{user_id}/{date}', 'TestController@update');
+    Route::delete('{user_id}/{date}', 'TestController@destroy');
+    Route::get('redirect', function () {
+        return redirect('index');});
+});
+
+// Route::get('test', 'App\Http\Livewire\FortuneComponent@render');
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
