@@ -32,9 +32,9 @@ return new class extends Migration
             $table->string('pressure', 50)->nullable(); //壓力源
             $table->string('symptom_id')->nullable(); //不適症狀
             $table->boolean('period')->nullable();
-            $table->boolean('autolesionA')->default(false); //自傷念頭
-            $table->boolean('autolesionB')->default(false); //自傷計畫
-            $table->boolean('autolesionC')->default(false); //自傷行為
+            $table->boolean('autolesionA')->nullable(); //自傷念頭
+            $table->boolean('autolesionB')->nullable(); //自傷計畫
+            $table->boolean('autolesionC')->nullable(); //自傷行為
             $table->timestamps();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
         });

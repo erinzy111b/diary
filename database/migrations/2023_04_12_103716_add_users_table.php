@@ -16,8 +16,8 @@ return new class extends Migration
         Schema::table('users', function (Blueprint $table) {
             $table->date('birthday')->nullable();
             $table->string('sexual', 10)->nullable();
-            $table->boolean('private_mode')->defalt(false);
-            $table->boolean('period_mode')->defalt(false);
+            $table->boolean('private_mode')->nullable();
+            $table->boolean('period_mode')->nullable();
             $table->timestamp('last_login_at')->nullable();
             $table->string('last_login_ip')->nullable();
             $table->timestamp('deleted_at')->nullable();

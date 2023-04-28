@@ -84,23 +84,23 @@
         {!! Form::label('period', '是', []) !!}
         {!! Form::radio('period', 1, false) !!}
         {!! Form::label('period', '否', []) !!}
-        {!! Form::radio('period', 2, true) !!}<br><br>
+        {!! Form::radio('period', 0, true) !!}<br><br>
 
         自傷念頭：
         {!! Form::label('autolesionA', '有', []) !!}
         {!! Form::radio('autolesionA', 1, false) !!}
         {!! Form::label('autolesionA', '無', []) !!}
-        {!! Form::radio('autolesionA', 2, true) !!}<br>
+        {!! Form::radio('autolesionA', 0, true) !!}<br>
         自傷計畫：
         {!! Form::label('autolesionB', '有', []) !!}
         {!! Form::radio('autolesionB', 1, false) !!}
         {!! Form::label('autolesionB', '無', []) !!}
-        {!! Form::radio('autolesionB', 2, true) !!}<br>
+        {!! Form::radio('autolesionB', 0, true) !!}<br>
         自傷行為：
         {!! Form::label('autolesionC', '有', []) !!}
         {!! Form::radio('autolesionC', 1, false) !!}
         {!! Form::label('autolesionC', '無', []) !!}
-        {!! Form::radio('autolesionC', 2, true) !!}<br><br>
+        {!! Form::radio('autolesionC', 0, true) !!}<br><br>
 
         {!! Form::submit('儲存', []) !!}
         {!! Form::reset('重置', []) !!}

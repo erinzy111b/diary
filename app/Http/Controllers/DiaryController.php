@@ -3,7 +3,9 @@
 namespace App\Http\Controllers;
 
 use App\Models\Diary;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DiaryController extends Controller
 {
@@ -14,7 +16,10 @@ class DiaryController extends Controller
      */
     public function index()
     {
-        return view('diary.index');
+        $user_id = Auth::id();
+        $diaries = Diary::where('user_id', $user_id)->orderBy('date', 'asc')->get();
+        dd($diaries, $user_id);
+        // return view('diary.index');
     }
 
     /**
@@ -24,7 +29,16 @@ class DiaryController extends Controller
      */
     public function create()
     {
-        return view('diary.create');
+        // 先驗證是否當天已存在資料，若當天已存在，直接轉去 edit
+
+        $user_id = Auth::id();
+        $today = Carbon::now()->toDateString();
+        $if = Diary::where('user_id', $user_id)->where('date', $today)->pluck('date');
+        if ($if) {
+            return redirect()->action('DiaryController@edit', ['date' => $today]);
+        } else {
+            return view('diary.create');
+        }
     }
 
     /**
