@@ -18,6 +18,7 @@ class DiaryController extends Controller
     {
         $user_id = Auth::id();
         $diaries = Diary::where('user_id', $user_id)->orderBy('date', 'asc')->get();
+        // 要怎麼樣才能每個日期只取第一篇文章呢？
         dd($diaries, $user_id);
         // return view('diary.index');
     }
@@ -103,7 +104,9 @@ class DiaryController extends Controller
      */
     public function update(Request $request, $user_id, $date)
     {
-        //
+        // 在 store 那邊要下條件！
+        // 儲存時若當天已有日記存在，提示一下
+        // 可選覆蓋（不就是編輯嗎？）、不新增、或進入當天日期的編輯頁
     }
 
     /**
@@ -116,4 +119,14 @@ class DiaryController extends Controller
     {
         //
     }
+
+    // public function override()
+    // {
+    //     // 好像沒必要欸，有 update 就夠了
+    // }
+
+    // public function redirectToEdit()
+    // {
+    //     //
+    // }
 }
