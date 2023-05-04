@@ -21,6 +21,10 @@ Route::get('test', function () {
     return view('test');
 });
 
+Route::get('demo', function () {
+    return view('_sample_index');
+});
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
@@ -30,7 +34,8 @@ Route::namespace ('App\Http\Controllers')->prefix('diary')->group(function () {
     Route::get('create', 'DiaryController@create');
     Route::post('/', ['as' => 'diary.store', 'uses' => 'DiaryController@store']);
     Route::get('{user_id}/{date}', 'DiaryController@show');
-    Route::get('{user_id}/{date}/edit', 'DiaryController@edit');
+    // Route::get('{user_id}/{date}/edit', 'DiaryController@edit');
+    Route::get('{diary_edit_encrypted}', 'DiaryController@edit');
     Route::put('{user_id}/{date}', 'DiaryController@update');
     Route::delete('{user_id}/{date}', 'DiaryController@destroy');
     Route::get('redirect', function () {
