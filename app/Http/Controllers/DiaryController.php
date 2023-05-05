@@ -6,6 +6,7 @@ use App\Models\Diary;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Crypt;
 
 class DiaryController extends Controller
 {
@@ -35,10 +36,14 @@ class DiaryController extends Controller
         $user_id = Auth::id();
         $today = Carbon::now()->toDateString();
         $if = Diary::where('user_id', $user_id)->where('date', $today)->pluck('date');
-        if ($if) {
-            return redirect()->action('DiaryController@edit', ['date' => $today]);
-        } else {
+        if ($if == null) {
             return view('diary.create');
+            // return redirect()->action('DiaryController@edit', ['date' => $today]);
+        } else {
+            // return view('diary.create');
+            // return redirect()->action('DiaryController@edit', ['user_id' => $user_id, 'date' => $today]);
+            return redirect()->route('diary.edit', ['user_id' => $user_id, 'date' => $today]);
+
         }
     }
 
@@ -129,4 +134,20 @@ class DiaryController extends Controller
     // {
     //     //
     // }
+
+    public function encrypt($diary_edit_encrypted)
+    {
+        $diary_edit_decrypted = Crypt::decryptString($diary_edit_encrypted);
+        // var_dump($diary_edit_decrypted);
+        $params = explode('&', $diary_edit_decrypted);
+        foreach ($params as $param) {
+            list($key, $value) = explode('=', $param);
+            if ($key === 'user_id') {
+                $user_id = $value;
+            } elseif ($key === 'date') {
+                $date = $value;
+            }
+        }
+        // return redirect()->action('DiaryController@edit');
+    }
 }
