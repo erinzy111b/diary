@@ -24,6 +24,9 @@ Route::get('test', function () {
 Route::get('demo', function () {
     return view('_sample_index');
 });
+Route::get('demoA', function () {
+    return view('layouts.master');
+});
 
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();

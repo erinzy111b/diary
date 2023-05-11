@@ -12,7 +12,7 @@
         {{-- {!! Form::text('user_id') !!} --}}
 
         {!! Form::label('date', '日期', []) !!}
-        {!! Form::date('date', \Carbon\Carbon::now()) !!}<br><br>
+        {!! Form::date('date', \Carbon\Carbon::now(), ['class' => 'form-date']) !!}<br><br>
 
         情緒：<br>
         {!! Form::checkbox('feelings[]', 5, false) !!}
