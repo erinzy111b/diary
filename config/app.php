@@ -54,7 +54,7 @@ return [
     |
      */
 
-    'url' => env('APP_URL', 'http://localhost:6080/diary/public'),
+    'url' => env('APP_URL', 'http://localhost:6080/treatingtree/public'),
 
     'asset_url' => env('ASSET_URL'),
 

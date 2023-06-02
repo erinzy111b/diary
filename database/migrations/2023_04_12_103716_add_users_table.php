@@ -15,7 +15,7 @@ return new class extends Migration
     {
         Schema::table('users', function (Blueprint $table) {
             $table->date('birthday')->nullable();
-            $table->string('sexual', 10)->nullable();
+            $table->string('gender', 5)->nullable();
             $table->boolean('private_mode')->nullable();
             $table->boolean('period_mode')->nullable();
             $table->timestamp('last_login_at')->nullable();
