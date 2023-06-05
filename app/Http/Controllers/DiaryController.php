@@ -14,7 +14,9 @@ class DiaryController extends Controller
      */
     public function index()
     {
-        return view('project.diary.index');
+        $diaries = Diary::orderBy('id')->get();
+        dd($diaries);
+        // return view('project.diary.index');
     }
 
     /**
