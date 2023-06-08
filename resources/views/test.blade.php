@@ -7,15 +7,16 @@
     <title>
        新增商品
     </title>
+    @livewireStyles
 </head>
 <body>
 <?php
-$user_id=Auth::user()->id;
-$date='2023-04-27';
-$diary_edit_encrypted = Crypt::encryptString('user_id=' . $user_id . '&date=2023-04-27');
+// $user_id=Auth::user()->id;
+// $date='2023-04-27';
+// $diary_edit_encrypted = Crypt::encryptString('user_id=' . $user_id . '&date=2023-04-27');
 ?>
 
-<input type="button" value="連結名稱" onclick="location.href='diary/{{ $diary_edit_encrypted }}'">
+{{-- <input type="button" value="連結名稱" onclick="location.href='diary/{{ $diary_edit_encrypted }}'"> --}}
 
         {{-- {!! Form::open(['route'=>'diary.edit', 'method'=>'get']) !!}
         {!! Form::hidden('user_id', Auth::user()->id) !!}
@@ -30,7 +31,7 @@ $diary_edit_encrypted = Crypt::encryptString('user_id=' . $user_id . '&date=2023
 
 
 
-    {!! Form::open(['url'=>'test','method'=>'POST','files'=>true]) !!}
+    {{-- {!! Form::open(['url'=>'test','method'=>'POST','files'=>true]) !!}
 
         {!! Form::label('title', '標題', ['class' => 'myclass']) !!}
         {!! Form::text('title', null) !!}<br><br>
@@ -87,7 +88,13 @@ $diary_edit_encrypted = Crypt::encryptString('user_id=' . $user_id . '&date=2023
         {!! Form::submit('儲存', []) !!}
         {!! Form::reset('重置', []) !!}
 
-        {!! Form::close() !!}
+        {!! Form::close() !!} --}}
 
+
+
+
+<livewire:todo-list />
+
+@livewireScripts
 </body>
 </html>

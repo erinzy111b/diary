@@ -28,6 +28,8 @@ Route::get('demoA', function () {
     return view('layouts.master');
 });
 
+Route::get('/todo', App\Http\Livewire\TodoList::class);
+
 Route::group(['prefix' => 'admin'], function () {
     Voyager::routes();
 });
